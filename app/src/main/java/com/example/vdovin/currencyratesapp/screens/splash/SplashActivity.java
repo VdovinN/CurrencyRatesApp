@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.vdovin.currencyratesapp.MainActivity;
+import com.example.vdovin.currencyratesapp.screens.main.CurrencyExchangeActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
                 new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                        Intent intent = new Intent(SplashActivity.this, CurrencyExchangeActivity.class);
                         startActivity(intent);
                         finish();
                     }
