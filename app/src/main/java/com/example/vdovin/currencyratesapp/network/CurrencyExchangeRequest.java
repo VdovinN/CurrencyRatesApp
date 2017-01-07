@@ -8,13 +8,14 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import rx.Observable;
 
 public class CurrencyExchangeRequest {
 
     private static final String BANKS_URL = "http://curs.md/en/ajax/block?block_name=bank_valute_table";
     private static final String BODY_PARAM = "CotDate";
 
-    private static final String DAY = "2017-01-05";
+    private static final String DAY = "2017-01-07";
 
     private OkHttpClient httpClient;
 
@@ -26,7 +27,7 @@ public class CurrencyExchangeRequest {
                 .addInterceptor(httpLoggingInterceptor).build();
     }
 
-    public String getCurrencyExchangeResponse() throws IOException {
+    public Observable<String> getCurrencyExchangeResponse() {
 
         RequestBody body = new FormBody.Builder()
                 .add(BODY_PARAM, DAY)
@@ -37,9 +38,15 @@ public class CurrencyExchangeRequest {
                 .post(body)
                 .build();
 
-        Response response = httpClient.newCall(request).execute();
-
-        return response.body().string();
+        return Observable.create(subscriber -> {
+            try {
+                Response response = httpClient.newCall(request).execute();
+                String responseBody = response.body().string();
+                Observable.just(responseBody);
+            } catch (IOException e) {
+                Observable.error(e);
+            }
+        });
     }
 
 }
