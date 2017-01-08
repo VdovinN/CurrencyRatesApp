@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CurrencyRatesApp</string>
+    <string name="network_problem">Occurs some problems with network!</string>
+    <string name="ok">OK</string>
 </resources>
