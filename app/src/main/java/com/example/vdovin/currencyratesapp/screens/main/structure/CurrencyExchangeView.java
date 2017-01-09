@@ -10,12 +10,16 @@ import android.widget.TextView;
 
 import com.example.vdovin.currencyratesapp.R;
 import com.example.vdovin.currencyratesapp.screens.main.CurrencyExchangeActivity;
+import com.example.vdovin.currencyratesapp.utils.parser.ParsedResponse;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CurrencyExchangeView {
 
+    private static final String SPACE = " ";
     @BindView(R.id.text_field)
     TextView currencyTextView;
 
@@ -38,8 +42,13 @@ public class CurrencyExchangeView {
         return view;
     }
 
-    public void display(String message) {
-        currencyTextView.setText(message);
+    public void display(List<ParsedResponse> parsedResponseList) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (ParsedResponse parsedResponse : parsedResponseList) {
+            stringBuilder.append(parsedResponse.getBankName());
+            stringBuilder.append(SPACE);
+        }
+        currencyTextView.setText(stringBuilder.toString());
     }
 
     public void showErrorDialog(Throwable throwable) {

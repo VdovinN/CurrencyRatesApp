@@ -38,6 +38,6 @@ public class CurrencyExchangeActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.unsubscribeSubscription();
+        presenter.unSubscribeSubscription();
     }
 }
