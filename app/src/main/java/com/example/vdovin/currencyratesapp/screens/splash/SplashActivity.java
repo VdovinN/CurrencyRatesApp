@@ -9,7 +9,7 @@ import com.example.vdovin.currencyratesapp.screens.main.CurrencyExchangeActivity
 
 public class SplashActivity extends AppCompatActivity {
 
-    public static final int DELAY_MILLIS = 2000;
+    public static final int DELAY_MILLIS = 5000;
     private Handler handler = null;
 
     @Override
@@ -17,14 +17,17 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         handler = new Handler();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         handler.postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SplashActivity.this, CurrencyExchangeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                () -> {
+                    Intent intent = new Intent(SplashActivity.this, CurrencyExchangeActivity.class);
+                    startActivity(intent);
+                    finish();
                 }, DELAY_MILLIS
         );
     }

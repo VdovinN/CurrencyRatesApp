@@ -13,6 +13,7 @@
 bin/
 gen/
 out/
+/main/**/database/dao/
 # Gradle files
 .gradle/
 build/
@@ -46,3 +47,4 @@ captures/
 ### Android Patch ###
 gen-external-apklibs
 .idea/
+app/src/main/java/com/example/vdovin/currencyratesapp/database/dao
