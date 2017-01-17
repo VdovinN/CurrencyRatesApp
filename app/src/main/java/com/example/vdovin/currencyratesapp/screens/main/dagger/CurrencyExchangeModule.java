@@ -1,5 +1,6 @@
 package com.example.vdovin.currencyratesapp.screens.main.dagger;
 
+import com.example.vdovin.currencyratesapp.database.service.ExchangeService;
 import com.example.vdovin.currencyratesapp.screens.main.CurrencyExchangeActivity;
 import com.example.vdovin.currencyratesapp.screens.main.structure.CurrencyExchangeModel;
 import com.example.vdovin.currencyratesapp.screens.main.structure.CurrencyExchangePresenter;
@@ -29,8 +30,10 @@ public class CurrencyExchangeModule {
 
     @Provides
     @CurrencyExchangeActivityScope
-    CurrencyExchangeModel provideCurrencyExchangeModel(OkHttpClient httpClient, Request request, StringParser stringParser) {
-        return new CurrencyExchangeModel(httpClient, request, stringParser);
+    CurrencyExchangeModel provideCurrencyExchangeModel(OkHttpClient httpClient,
+                                                       Request request,
+                                                       StringParser stringParser, ExchangeService exchangeService) {
+        return new CurrencyExchangeModel(httpClient, request, stringParser, exchangeService);
     }
 
     @Provides
@@ -41,7 +44,9 @@ public class CurrencyExchangeModule {
 
     @Provides
     @CurrencyExchangeActivityScope
-    CurrencyExchangePresenter provideCurrencyExchangePresenter(CurrencyExchangeView view, CurrencyExchangeModel model, RxSchedulers rxSchedulers) {
+    CurrencyExchangePresenter provideCurrencyExchangePresenter(CurrencyExchangeView view,
+                                                               CurrencyExchangeModel model,
+                                                               RxSchedulers rxSchedulers) {
         return new CurrencyExchangePresenter(view, model, rxSchedulers);
     }
 

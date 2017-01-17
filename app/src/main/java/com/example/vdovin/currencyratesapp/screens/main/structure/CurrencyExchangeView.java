@@ -9,8 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.vdovin.currencyratesapp.R;
+import com.example.vdovin.currencyratesapp.database.model.Exchange;
 import com.example.vdovin.currencyratesapp.screens.main.CurrencyExchangeActivity;
-import com.example.vdovin.currencyratesapp.utils.parser.ParsedResponse;
 
 import java.util.List;
 
@@ -42,10 +42,10 @@ public class CurrencyExchangeView {
         return view;
     }
 
-    public void display(List<ParsedResponse> parsedResponseList) {
+    public void display(List<Exchange> exchangeList) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (ParsedResponse parsedResponse : parsedResponseList) {
-            stringBuilder.append(parsedResponse.getBankName());
+        for (Exchange exchange : exchangeList) {
+            stringBuilder.append(exchange.getBankName());
             stringBuilder.append(SPACE);
         }
         currencyTextView.setText(stringBuilder.toString());

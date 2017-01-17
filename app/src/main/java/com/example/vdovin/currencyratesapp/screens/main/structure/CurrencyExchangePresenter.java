@@ -1,7 +1,9 @@
 package com.example.vdovin.currencyratesapp.screens.main.structure;
 
-import com.example.vdovin.currencyratesapp.utils.parser.StringParser;
+import com.example.vdovin.currencyratesapp.database.model.Exchange;
 import com.example.vdovin.currencyratesapp.utils.rx.RxSchedulers;
+
+import java.util.List;
 
 import rx.Observable;
 import rx.Subscription;
@@ -22,13 +24,18 @@ public class CurrencyExchangePresenter {
     }
 
     public void doSync() {
+
         Observable<String> observable = model.getCurrencyExchangeResponseObservable();
         subscription = observable
                 .flatMap(response -> model.getParsedResponseObservable(response))
+                .flatMap(exchangeList -> {
+                    model.updateDatabase(exchangeList);
+                    return Observable.just(model.loadAllExchanges());
+                })
                 .subscribeOn(rxSchedulers.network())
                 .observeOn(rxSchedulers.mainThread())
                 .subscribe(
-                        parsedResponseList -> view.display(parsedResponseList),
+                        banks -> view.display(banks),
                         error -> view.showErrorDialog(error)
                 );
     }
