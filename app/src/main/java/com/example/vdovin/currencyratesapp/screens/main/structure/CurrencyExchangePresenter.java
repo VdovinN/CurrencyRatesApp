@@ -23,15 +23,9 @@ public class CurrencyExchangePresenter {
         this.rxSchedulers = rxSchedulers;
     }
 
-    public void doSync() {
-
-        Observable<String> observable = model.getCurrencyExchangeResponseObservable();
+    public void getExchangeList() {
+        Observable<List<Exchange>> observable = model.loadAllExchanges();
         subscription = observable
-                .flatMap(response -> model.getParsedResponseObservable(response))
-                .flatMap(exchangeList -> {
-                    model.updateDatabase(exchangeList);
-                    return Observable.just(model.loadAllExchanges());
-                })
                 .subscribeOn(rxSchedulers.network())
                 .observeOn(rxSchedulers.mainThread())
                 .subscribe(

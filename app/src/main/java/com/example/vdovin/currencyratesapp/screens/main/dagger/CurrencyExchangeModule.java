@@ -30,10 +30,8 @@ public class CurrencyExchangeModule {
 
     @Provides
     @CurrencyExchangeActivityScope
-    CurrencyExchangeModel provideCurrencyExchangeModel(OkHttpClient httpClient,
-                                                       Request request,
-                                                       StringParser stringParser, ExchangeService exchangeService) {
-        return new CurrencyExchangeModel(httpClient, request, stringParser, exchangeService);
+    CurrencyExchangeModel provideCurrencyExchangeModel(ExchangeService exchangeService) {
+        return new CurrencyExchangeModel(exchangeService);
     }
 
     @Provides

@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class CurrencyExchangeView {
 
-    private static final String SPACE = " ";
+    private static final String SPACE = " ";//Temporary
     @BindView(R.id.text_field)
     TextView currencyTextView;
 
@@ -42,7 +42,7 @@ public class CurrencyExchangeView {
         return view;
     }
 
-    public void display(List<Exchange> exchangeList) {
+    public void display(List<Exchange> exchangeList) {//Temporary
         StringBuilder stringBuilder = new StringBuilder();
         for (Exchange exchange : exchangeList) {
             stringBuilder.append(exchange.getBankName());
