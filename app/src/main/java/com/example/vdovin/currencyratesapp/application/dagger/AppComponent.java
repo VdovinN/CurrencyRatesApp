@@ -3,6 +3,7 @@ package com.example.vdovin.currencyratesapp.application.dagger;
 import android.content.Context;
 
 import com.example.vdovin.currencyratesapp.database.service.ExchangeService;
+import com.example.vdovin.currencyratesapp.utils.parser.StringParser;
 import com.example.vdovin.currencyratesapp.utils.rx.RxSchedulers;
 
 import dagger.Component;
@@ -13,7 +14,8 @@ import okhttp3.Request;
 @Component(modules = {
         AppModule.class,
         NetworkModule.class,
-        DatabaseModule.class
+        DatabaseModule.class,
+        ParserModule.class
 })
 public interface AppComponent {
 
@@ -26,5 +28,7 @@ public interface AppComponent {
     RxSchedulers rxSchedulers();
 
     ExchangeService exchangeService();
+
+    StringParser stringParser();
 
 }

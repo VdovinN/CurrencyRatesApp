@@ -32,7 +32,7 @@ public class CurrencyExchangeActivity extends AppCompatActivity {
 
         setContentView(view.getView());
 
-        presenter.doSync();
+        presenter.getExchangeList();
     }
 
     @Override
