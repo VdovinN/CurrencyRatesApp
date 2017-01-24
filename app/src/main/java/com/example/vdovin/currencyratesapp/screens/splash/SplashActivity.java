@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.vdovin.currencyratesapp.application.CurrencyApp;
-import com.example.vdovin.currencyratesapp.screens.main.CurrencyExchangeActivity;
+import com.example.vdovin.currencyratesapp.screens.main.MainActivity;
 import com.example.vdovin.currencyratesapp.screens.splash.dagger.DaggerSplashComponent;
 import com.example.vdovin.currencyratesapp.screens.splash.dagger.SplashModule;
 import com.example.vdovin.currencyratesapp.screens.splash.structure.SplashPresenter;
@@ -42,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void startMainActivity() {
-        Intent intent = new Intent(SplashActivity.this, CurrencyExchangeActivity.class);
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

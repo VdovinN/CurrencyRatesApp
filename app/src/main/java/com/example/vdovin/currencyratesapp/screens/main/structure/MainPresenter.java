@@ -7,29 +7,31 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscription;
-import rx.functions.Func1;
 
-public class CurrencyExchangePresenter {
+public class MainPresenter {
 
-    private CurrencyExchangeModel model;
-    private CurrencyExchangeView view;
+    private MainModel model;
+    private MainView view;
     private RxSchedulers rxSchedulers;
 
     private Subscription subscription;
 
-    public CurrencyExchangePresenter(CurrencyExchangeView view, CurrencyExchangeModel model, RxSchedulers rxSchedulers) {
-        this.view = view;
+    public MainPresenter(MainModel model, RxSchedulers rxSchedulers) {
         this.model = model;
         this.rxSchedulers = rxSchedulers;
     }
 
+    public void setView(MainView view) {
+        this.view = view;
+    }
+
     public void getExchangeList() {
-        Observable<List<Exchange>> observable = model.loadAllExchanges();
+        Observable<List<String>> observable = model.loadAllCurrencies();
         subscription = observable
                 .subscribeOn(rxSchedulers.network())
                 .observeOn(rxSchedulers.mainThread())
                 .subscribe(
-                        banks -> view.display(banks),
+                        banks -> view.displayCurrencies(banks),
                         error -> view.showErrorDialog(error)
                 );
     }

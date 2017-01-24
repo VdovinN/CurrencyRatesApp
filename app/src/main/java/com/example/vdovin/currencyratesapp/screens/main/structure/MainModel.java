@@ -13,15 +13,19 @@ import okhttp3.Request;
 import okhttp3.Response;
 import rx.Observable;
 
-public class CurrencyExchangeModel {
+public class MainModel {
 
     private ExchangeService exchangeService;
 
-    public CurrencyExchangeModel(ExchangeService exchangeService) {
+    public MainModel(ExchangeService exchangeService) {
         this.exchangeService = exchangeService;
     }
 
     public Observable<List<Exchange>> loadAllExchanges() {
         return Observable.just(exchangeService.loadAll());
+    }
+
+    public Observable<List<String>> loadAllCurrencies() {
+        return Observable.just(exchangeService.loadAllCurrencies());
     }
 }

@@ -8,5 +8,5 @@ import javax.inject.Scope;
 
 @Scope
 @Retention(RetentionPolicy.CLASS)
-public @interface CurrencyExchangeActivityScope {
+public @interface MainScope {
 }
